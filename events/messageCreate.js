@@ -1,7 +1,6 @@
 // IMPORT MODULES
 
 const { ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js')
-const config = require('../config/config.json')
 const { isCharleyRogByID } = require('../functions/isHavePerm')
 const embedBuilderFoo = require('../functions/embedBuilderFoo')
 
@@ -144,37 +143,6 @@ module.exports = async (message) => {
 
 		if (message.content === 'Как назвать ребенка?') {
 			message.channel.send(`SideMC.net`)
-		}
-
-		if (message.content === 'Бот, кого я люблю?') {
-			if (message.author.id == '388767423081349130') {
-				const user = client.users.cache.get('533616290854600714') // Хомяк
-				if (user) {
-					message.channel.send(`Конечно же <@${user.id}> :hearts:`)
-				}
-			} else if (
-				message.author.id == '533616290854600714' ||
-				message.author.id == '767099886687748144'
-			) {
-				const user = client.users.cache.get('388767423081349130') // Француз
-				if (user) {
-					message.channel.send(`Конечно же <@${user.id}> :hearts:`)
-				}
-			} else if (message.author.id == '288352260390387712') {
-				// Difex
-				const user = client.users.cache.get('674148024745984031') // Аня
-				if (user) {
-					message.channel.send(`Конечно же <@${user.id}> :hearts:`)
-				}
-			} else if (message.author.id == '674148024745984031') {
-				// Аня
-				const user = client.users.cache.get('288352260390387712') // Difex
-				if (user) {
-					message.channel.send(`Конечно же <@${user.id}> :hearts:`)
-				}
-			} else {
-				message.channel.send(`Только <@${message.author.id}> любимого :hearts:`)
-			}
 		}
 	} catch (error) {
 		console.error(error)

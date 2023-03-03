@@ -8,6 +8,7 @@ const monitoringOnlineUpdate = require('../functions/monitoringOnlineUpdate')
 module.exports = async (bot) => {
 	// await registerCommands();
 	console.log(`Бот запущен. ID: ${bot.user.tag}`)
+
 	//   monitoringOnlineUpdate();
 	// setInterval(monitoringOnlineUpdate, 60000);
 }

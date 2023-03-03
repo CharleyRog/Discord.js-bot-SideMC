@@ -1,8 +1,8 @@
 // IMPORT MODULES
 
 const { ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js')
-const { isCharleyRogByID } = require('../functions/isHavePerm')
-const embedBuilderFoo = require('../functions/embedBuilderFoo')
+const { isCharleyRogByID } = require('../../functions/isHavePerm')
+const embedBuilderFoo = require('../../functions/embedBuilderFoo')
 
 // messageCreate EVENT CODE
 

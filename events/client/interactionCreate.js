@@ -7,9 +7,9 @@ const {
 	ActionRowBuilder,
 	InteractionType
 } = require('discord.js')
-const config = require('../config/config.json')
-const embedBuilderFoo = require('../functions/embedBuilderFoo')
-const { isAdmin } = require('../functions/isHavePerm')
+const config = require('../../config/config.json')
+const embedBuilderFoo = require('../../functions/embedBuilderFoo')
+const { isAdmin } = require('../../functions/isHavePerm')
 
 // interactionCreate EVENT CODE
 

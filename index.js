@@ -5,7 +5,7 @@ const fs = require('fs')
 const config = require('./config/config.json')
 const client = require('./client')
 
-// process events init
+// process EVENTS INIT
 
 fs.readdirSync('./events/process')
 	.filter((file) => file.endsWith('.js'))
@@ -20,13 +20,13 @@ fs.readdirSync('./events/process')
 		}
 	})
 
-// client events init
+// client EVENTS INIT
 
-fs.readdirSync('./events')
+fs.readdirSync('./events/client')
 	.filter((file) => file.endsWith('.js'))
 	.forEach((file) => {
 		try {
-			const event = require(path.join(__dirname, 'events', file))
+			const event = require(path.join(__dirname, 'events/client', file))
 			const eventName = file.split('.')[0]
 			console.log(`Инициализация client события: ${eventName}`)
 			client.on(eventName, (...args) => event(...args))

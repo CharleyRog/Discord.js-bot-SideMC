@@ -1,7 +1,7 @@
 // IMPORT MODULES
 
-const registerCommands = require('../functions/registerCommands')
-const monitoringOnlineUpdate = require('../functions/monitoringOnlineUpdate')
+const registerCommands = require('../../functions/registerCommands')
+const monitoringOnlineUpdate = require('../../functions/monitoringOnlineUpdate')
 
 // ready EVENT CODE
 

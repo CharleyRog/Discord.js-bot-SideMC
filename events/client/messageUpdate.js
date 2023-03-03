@@ -1,8 +1,8 @@
 // IMPORT MODULES
 
-const embedBuilderFoo = require('../functions/embedBuilderFoo')
-const config = require('../config/config.json')
-const { isAdmin, isBot } = require('../functions/isHavePerm')
+const embedBuilderFoo = require('../../functions/embedBuilderFoo')
+const config = require('../../config/config.json')
+const { isAdmin, isBot } = require('../../functions/isHavePerm')
 
 // messageUpdate EVENT CODE
 
@@ -54,9 +54,7 @@ module.exports = async (oldMessage, newMessage) => {
 			})
 		}
 
-		if (newContent[0] == '<' || newContent[0] == ':') {
-			newContent = newContent
-		} else {
+		if (newContent[0] !== '<' || newContent[0] !== ':') {
 			newContent = `\`\`\`${newContent}\`\`\``
 		}
 

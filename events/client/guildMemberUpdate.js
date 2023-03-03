@@ -1,7 +1,7 @@
 // IMPORT MODULES
 
-const embedBuilderFoo = require('../functions/embedBuilderFoo')
-const config = require('../config/config.json')
+const embedBuilderFoo = require('../../functions/embedBuilderFoo')
+const config = require('../../config/config.json')
 
 // guildMemberUpdate EVENT CODE
 

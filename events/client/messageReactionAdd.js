@@ -1,14 +1,14 @@
 // IMPORT MODULES
 
-const config = require('../config/config.json')
+const config = require('../../config/config.json')
 const {
 	isAdmin,
 	isBot,
 	isAdminsSostav,
 	isDiscordSostav,
 	isStSostav
-} = require('../functions/isHavePerm')
-const embedBuilderFoo = require('../functions/embedBuilderFoo')
+} = require('../../functions/isHavePerm')
+const embedBuilderFoo = require('../../functions/embedBuilderFoo')
 
 // messageReactionAdd EVENT CODE
 

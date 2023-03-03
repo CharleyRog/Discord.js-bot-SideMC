@@ -203,7 +203,7 @@ module.exports = async (interaction) => {
 			)
 
 			try {
-				const mainNewsChannel = interaction.guild.channels.cache.get(
+				const testNewsChannel = interaction.guild.channels.cache.get(
 					config.testNewsChannelID
 				)
 
@@ -217,9 +217,9 @@ module.exports = async (interaction) => {
 
 				const embed = embedBuilderFoo(data)
 
-				await mainNewsChannel.send({ content: '@everyone', embeds: [embed] })
+				await testNewsChannel.send({ content: '@everyone', embeds: [embed] })
 				await interaction.reply({
-					content: `Новость ${data.title} опубликована в канале ${mainNewsChannel}`,
+					content: `Новость ${data.title} опубликована в канале ${testNewsChannel}`,
 					ephemeral: true
 				})
 			} catch (error) {

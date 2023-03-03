@@ -28,14 +28,12 @@ module.exports = async (message) => {
 
 				button.addComponents(createNewsTestPostButton, createNewsMainPostButton)
 
-				const data = {
+				const embed = embedBuilderFoo({
 					color: '#FFFF00',
 					title: 'Панель администратора',
 					description:
 						'Данная панель доступна исключительно Администраторам данного сервера. Функционал будет дополняться в будущем'
-				}
-
-				const embed = embedBuilderFoo(data)
+				})
 
 				message.reply({
 					components: [button],
@@ -113,14 +111,12 @@ module.exports = async (message) => {
 					history
 				)
 
-				const data = {
+				const embed = embedBuilderFoo({
 					color: '#FFFF00',
 					title: 'Панель модератора',
 					description:
 						'Данная панель доступна исключительно Старшему модераторскому составу. Функционал будет дополняться в будущем'
-				}
-
-				const embed = embedBuilderFoo(data)
+				})
 
 				message.reply({
 					components: [button, button2],

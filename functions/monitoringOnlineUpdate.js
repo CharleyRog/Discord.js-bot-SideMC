@@ -13,16 +13,19 @@ const monitoringOnlineUpdate = async () => {
 		const serversOnlineChanelID = config.serversOnlineChanelID
 		const serversOnlineMessageID = config.serversOnlineMessageID
 		const monitoringLink = config.linkForOnlineMonitoring
-		let arr = []
-		let str = ''
-		let sumOnline = 0
+
 		const guildID = config.guildID
 		const guild = client.guilds.cache.get(guildID)
 		const logChannel = guild.channels.cache.get(serversOnlineChanelID)
 		const logMessage = await logChannel.messages.fetch(serversOnlineMessageID)
 
+		let arr = []
+		let str = ''
+		let sumOnline = 0
+
 		if (!logChannel) {
 			console.error(`Channel with ID ${serversOnlineChanelID} not found.`)
+			return
 		}
 
 		await axios
@@ -42,7 +45,6 @@ const monitoringOnlineUpdate = async () => {
 			.catch((error) => {
 				console.log(error)
 			})
-			.finally(() => {})
 
 		const embed = new EmbedBuilder()
 			.setColor('#00FF00')

@@ -1,6 +1,5 @@
 // IMPORT MODULES
 
-const config = require('../config/config.json')
 const rolesIDs = require('../config/rolesIDs.json')
 const usersIDs = require('../config/usersIDs.json')
 

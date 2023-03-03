@@ -217,7 +217,7 @@ module.exports = async (interaction) => {
 
 				const embed = embedBuilderFoo(data)
 
-				await testNewsChannel.send({ content: '@everyone', embeds: [embed] })
+				await testNewsChannel.send({ content: 'тап :)', embeds: [embed] })
 				await interaction.reply({
 					content: `Новость ${data.title} опубликована в канале ${testNewsChannel}`,
 					ephemeral: true

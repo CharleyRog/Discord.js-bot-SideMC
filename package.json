@@ -13,12 +13,12 @@
 		"cheerio": "^1.0.0-rc.12",
 		"discord-api-types": "^0.37.35",
 		"discord.js": "^14.7.1",
-		"enmap": "^5.8.2"
+		"enmap": "^5.8.2",
+		"mongoose": "^7.0.0"
 	},
 	"scripts": {
 		"dev": "nodemon .",
-		"start": "node .",
-		"format": "prettier --write src"
+		"start": "node ."
 	},
 	"repository": {
 		"type": "git",

@@ -238,5 +238,6 @@ Temporary Items
 .apdisk
 
 # Project ignored files
-src/config/
+config/
 build/
+src/config/

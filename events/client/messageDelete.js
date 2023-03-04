@@ -1,48 +1,47 @@
 // IMPORT MODULES
 
 const config = require('../../config/config.json')
-const embedBuilderFoo = require('../../functions/embedBuilderFoo')
+const embedBuilderFoo = require('../../utils/embedBuilderFoo')
 
-// messageDelete EVENT CODE
+// CODE
 
 module.exports = async (message) => {
-	if (!message || !message.guild) return
+  if (!message || !message.guild) return
 
-	try {
-		const messageDeleteChannelID = config.messageDeleteChannelID
-		const logChannel = message.guild.channels.cache.get(messageDeleteChannelID)
-		const guildID = config.guildID
-		const deletedTime = message.createdAt
+  try {
+    const messageDeleteChannelID = config.CHANNELS_ID.MESSAGE_DELETE_CHANNEL_ID
+    const logChannel = message.guild.channels.cache.get(messageDeleteChannelID)
+    const guildID = config.GUILD_ID
+    const deletedTime = message.createdAt
 
-		const embed = embedBuilderFoo({
-			color: '#FF0000',
-			title: 'Сообщение удалено',
-			url: `https://discord.com/channels/${guildID}/${message.channel.id}/${message.id}`
-		})
+    const embed = embedBuilderFoo({
+      color: '#FF0000',
+      title: 'Сообщение удалено',
+      url: `https://discord.com/channels/${guildID}/${message.channel.id}/${message.id}`,
+    })
 
-		embed
-			.addFields(
-				{
-					name: 'Автор:',
-					value:
-						message.author != null ? `<@${message.author.id}>` : `[oldMessage]`,
-					inline: true
-				},
-				{
-					name: 'В канале:',
-					value: `${message.channel.toString()}`,
-					inline: true
-				},
-				{ name: 'Дата создания:', value: `${deletedTime}`, inline: true }
-			)
-			.addFields({
-				name: 'Содержание:',
-				value: message.content != null ? message.content : `[oldMessage]`,
-				inline: false
-			})
+    embed
+      .addFields(
+        {
+          name: 'Автор:',
+          value: message.author != null ? `<@${message.author.id}>` : `[oldMessage]`,
+          inline: true,
+        },
+        {
+          name: 'В канале:',
+          value: `${message.channel.toString()}`,
+          inline: true,
+        },
+        { name: 'Дата создания:', value: `${deletedTime}`, inline: true },
+      )
+      .addFields({
+        name: 'Содержание:',
+        value: message.content != null ? message.content : `[oldMessage]`,
+        inline: false,
+      })
 
-		await logChannel.send({ embeds: [embed] })
-	} catch (error) {
-		console.error(error)
-	}
+    await logChannel.send({ embeds: [embed] })
+  } catch (error) {
+    console.error(error)
+  }
 }

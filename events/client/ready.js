@@ -1,13 +1,13 @@
 // IMPORT MODULES
 
-const registerCommands = require('../../functions/registerCommands')
-const monitoringOnlineUpdate = require('../../functions/monitoringOnlineUpdate')
+const registerCommands = require('../../utils/registerCommands')
+const monitoringOnlineUpdate = require('../../utils/monitoringOnlineUpdate')
 
-// ready EVENT CODE
+// CODE
 
-module.exports = async (bot) => {
-	// await registerCommands();
-	console.log(`Бот запущен. ID: ${bot.user.tag}`)
-	//   monitoringOnlineUpdate();
-	// setInterval(monitoringOnlineUpdate, 60000);
+module.exports = async (client) => {
+  // await registerCommands();
+  console.log(`Бот запущен. ID: ${client.user.tag}`)
+  //   monitoringOnlineUpdate();
+  // setInterval(monitoringOnlineUpdate, 60000);
 }

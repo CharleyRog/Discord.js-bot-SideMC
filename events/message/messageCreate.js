@@ -11,6 +11,25 @@ module.exports = async (message) => {
 
   const command = message.content.toLowerCase()
 
+  const askSayData = [
+    {
+      ask: 'вай',
+      say: 'Вай вай :)',
+    },
+    {
+      ask: 'как назвать ребенка',
+      say: 'SideMC.net',
+    },
+    {
+      ask: 'чмок',
+      say: 'Чмок в пупок :hearts:',
+    },
+    {
+      ask: 'чпок',
+      say: 'Чпок',
+    },
+  ]
+
   try {
     if (isCharleyRogByID(message.author.id)) {
       if (message.content === '!createAdminsPanel') {
@@ -119,20 +138,11 @@ module.exports = async (message) => {
       }
     }
 
-    if (command === 'чмок') {
-      message.channel.send(`Чмок в пупок :hearts:`)
-    }
-
-    if (command === 'чпок') {
-      message.channel.send(`Чпок`)
-    }
-
-    if (command === 'вай') {
-      message.channel.send(`вай вай :)`)
-    }
-
-    if (message.content === 'Как назвать ребенка?') {
-      message.channel.send(`SideMC.net`)
+    for (const obj of askSayData) {
+      if (obj.ask === command) {
+        await message.reply(obj.say)
+        return
+      }
     }
   } catch (error) {
     console.error(error)

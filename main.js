@@ -6,8 +6,10 @@ const eventsInit = require('./events/eventsInit')
 const { TOKEN } = require('./utils/devModeChecker')
 const { initializeMongoose } = require('./database/mongoose')
 
+// CODE
+
 ;(async () => {
   await eventsInit()
-  const database = await initializeMongoose()
+  // const database = await initializeMongoose()
   await client.login(TOKEN)
 })()

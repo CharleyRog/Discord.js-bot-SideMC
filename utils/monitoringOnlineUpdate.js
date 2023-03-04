@@ -49,9 +49,9 @@ const monitoringOnlineUpdate = async () => {
     const embed = new EmbedBuilder().setColor('#00FF00').setTitle('Мониторинг онлайна серверов')
 
     for (let i = 0; i < arr.length; i++) {
-      sumOnline = sumOnline + parseInt(arr[i].online)
       if (arr[i].online) {
         str = str.concat(`${i + 1}. ${arr[i].server} \`[${arr[i].online}/100]\` \n\n`)
+        sumOnline = sumOnline + parseInt(arr[i].online)
       } else {
         str = str.concat(`${i + 1}. ${arr[i].server} \`[выключен]\` \n\n`)
       }

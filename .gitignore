@@ -241,3 +241,4 @@ Temporary Items
 config/
 build/
 src/config/
+backup/

@@ -12,7 +12,7 @@
 		"enmap": "^5.8.2"
 	},
 	"scripts": {
-		"dev": "nodemon main.js"
+		"start": "nodemon main.js"
 	},
 	"repository": {
 		"type": "git",

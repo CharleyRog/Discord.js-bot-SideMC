@@ -7,7 +7,7 @@ const { DEV_MODE } = require('../utils/devModeChecker')
 
 // CODE
 
-const devModeEvents = ['messageCreate', 'ready']
+const devModeEvents = ['interactionCreate', 'ready']
 
 const eventFileInit = (folder, file) => {
   try {

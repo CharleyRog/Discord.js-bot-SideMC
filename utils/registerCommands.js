@@ -4,7 +4,7 @@ const config = require('../config/config.json')
 const { REST } = require('@discordjs/rest')
 const { Routes } = require('discord-api-types/v9')
 const commands = require('../commands/commands')
-const { TOKEN, CLIENT_ID } = require('./devModeChecker')
+const { TOKEN, CLIENT_ID } = require('../utils/devModeChecker')
 
 // registerCommands CODE
 

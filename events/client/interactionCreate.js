@@ -10,20 +10,21 @@ const { isAdmin } = require('../../utils/isHavePerm')
 module.exports = async (interaction) => {
   if (interaction.isCommand()) {
     try {
+      if (isAdmin(interaction.member)) {
+        if (interaction.commandName == 'say') {
+          const messageToReply = interaction.options.getString('message')
+
+          await interaction.channel.send(messageToReply)
+          await interaction.reply({ content: 'Sent', ephemeral: true })
+        }
+      }
+
       if (interaction.commandName === 'ping') {
         await interaction.reply({ content: 'Pong!', ephemeral: true })
       }
 
       if (interaction.commandName === 'hello') {
         await interaction.reply(`Hello, ${interaction.user.username}!`)
-      }
-
-      if (interaction.commandName === 'say') {
-        if (!isAdmin(interaction.member)) return
-
-        // TODO
-
-        await interaction.reply({ content: 'Wrote!', ephemeral: true })
       }
     } catch (error) {
       console.error(error)

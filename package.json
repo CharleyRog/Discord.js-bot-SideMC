@@ -1,8 +1,12 @@
 {
 	"name": "SideMCBot",
+	"description": "Discord.js v14 bot by CharleyRog",
 	"version": "1.0.0",
 	"author": "CharleyRog",
 	"main": "main.js",
+	"engines": {
+		"node": ">=18.14.2"
+	},
 	"dependencies": {
 		"@discordjs/rest": "^1.5.0",
 		"axios": "^1.3.3",
@@ -12,7 +16,9 @@
 		"enmap": "^5.8.2"
 	},
 	"scripts": {
-		"start": "nodemon main.js"
+		"dev": "nodemon .",
+		"start": "node .",
+		"format": "prettier --write src"
 	},
 	"repository": {
 		"type": "git",
@@ -21,7 +27,17 @@
 	"bugs": {
 		"url": "https://github.com/CharleyRog/SideMCBot/issues"
 	},
+	"keywords": [
+		"discord",
+		"discord.js",
+		"discord bot",
+		"open-source",
+		"bot"
+	],
 	"devDependencies": {
+		"eslint": "^8.35.0",
+		"eslint-plugin-jsdoc": "^40.0.1",
+		"node": "^19.6.1",
 		"nodemon": "^2.0.21",
 		"prettier": "^2.8.4"
 	}

@@ -2,7 +2,7 @@
 
 const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
 const config = require('../../config/config.json')
-const { isAdmin, isBot } = require('../../utils/isHavePerm.js')
+const { isAdmin, isBot } = require('../../utils/isHavePerm.ts')
 
 // CODE
 

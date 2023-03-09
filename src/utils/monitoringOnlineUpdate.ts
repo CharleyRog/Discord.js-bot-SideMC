@@ -1,7 +1,7 @@
 // IMPORT MODULES
 
-import { EmbedBuilder } from 'discord.js'
-import cheerio from 'cheerio'
+import { EmbedBuilder, Guild } from 'discord.js'
+import cheerio, { CheerioAPI } from 'cheerio'
 import axios from 'axios'
 import client from '../client.ts'
 import config from '../config/config.json' assert { type: 'json' }
@@ -10,16 +10,16 @@ import config from '../config/config.json' assert { type: 'json' }
 
 const monitoringOnlineUpdate = async () => {
   try {
-    const serversOnlineChanelID = config.CHANNELS_ID.SERVERS_ONLINE_CHANNEL_ID
-    const serversOnlineMessageID = config.MESSAGES_ID.SERVERS_ONLINE_MESSAGE_ID
-    const monitoringLink = config.LINKS.ONLINE_MONITORING_LINK
-    const guildID = config.GUILD_ID
+    const serversOnlineChanelID: string = config.CHANNELS_ID.SERVERS_ONLINE_CHANNEL_ID
+    const serversOnlineMessageID: string = config.MESSAGES_ID.SERVERS_ONLINE_MESSAGE_ID
+    const monitoringLink: string = config.LINKS.ONLINE_MONITORING_LINK
+    const guildID: string = config.GUILD_ID
 
     const guild = client.guilds.cache.get(guildID)
     const logChannel = guild.channels.cache.get(serversOnlineChanelID)
     const logMessage = await logChannel.messages.fetch(serversOnlineMessageID)
 
-    let arr = []
+    let arr: [] = []
     let str = ''
     let sumOnline = 0
 
@@ -36,10 +36,11 @@ const monitoringOnlineUpdate = async () => {
         const monitoring = $('.monitoring')
 
         for (let i = 0; i < monitoring.length; i++) {
-          arr.push({
+          const el: any = {
             server: monitoring[i].children[3].children[0].data,
             online: monitoring[i].children[1].children[0].data,
-          })
+          }
+          arr.push(el)
         }
       })
       .catch((error) => {
@@ -64,7 +65,7 @@ const monitoringOnlineUpdate = async () => {
     })
 
     // logChannel.send({ embeds: [embed] });
-    logMessage.edit({ embeds: [embed] })
+    await logMessage.edit({ embeds: [embed] })
   } catch (error) {
     console.error(error)
   }

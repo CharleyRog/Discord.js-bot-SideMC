@@ -1,7 +1,7 @@
 // IMPORT MODULES
 
 const registerCommands = require('../../utils/registerCommands.ts')
-const monitoringOnlineUpdate = require('../../utils/monitoringOnlineUpdate.js')
+const monitoringOnlineUpdate = require('../../utils/monitoringOnlineUpdate.ts')
 
 // CODE
 

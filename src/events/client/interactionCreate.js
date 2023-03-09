@@ -3,7 +3,7 @@
 const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, InteractionType } = require('discord.js')
 const config = require('../../config/config.json')
 const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
-const { isAdmin } = require('../../utils/isHavePerm.js')
+const { isAdmin } = require('../../utils/isHavePerm.ts')
 
 // CODE
 

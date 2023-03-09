@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (oldChannel, newChannel) => {
+export default async (oldChannel: any, newChannel: any): Promise<void> => {
   console.log(`channelUpdate: ${oldChannel} | ${newChannel}`)
 }

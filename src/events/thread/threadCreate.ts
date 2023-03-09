@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (thread) => {
+export default async (thread: any): Promise<void> => {
   console.log(`threadCreate: ${thread}`)
 }

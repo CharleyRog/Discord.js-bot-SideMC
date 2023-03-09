@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (oldThread, newThread) => {
+export default async (oldThread: any, newThread: any): Promise<void> => {
   console.log(`threadUpdate: ${oldThread} | ${newThread}`)
 }

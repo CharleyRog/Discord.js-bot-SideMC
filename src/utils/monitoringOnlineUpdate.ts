@@ -3,7 +3,7 @@
 import { EmbedBuilder, Guild } from 'discord.js'
 import cheerio, { CheerioAPI } from 'cheerio'
 import axios from 'axios'
-import client from '../client.ts'
+import client from '../client.js'
 import config from '../config/config.json' assert { type: 'json' }
 
 // monitoringOnlineUpdate CODE
@@ -16,7 +16,10 @@ const monitoringOnlineUpdate = async () => {
     const guildID: string = config.GUILD_ID
 
     const guild = client.guilds.cache.get(guildID)
+    if (!guild) return
     const logChannel = guild.channels.cache.get(serversOnlineChanelID)
+    if (!logChannel) return
+    // @ts-ignore
     const logMessage = await logChannel.messages.fetch(serversOnlineMessageID)
 
     let arr: [] = []
@@ -37,9 +40,12 @@ const monitoringOnlineUpdate = async () => {
 
         for (let i = 0; i < monitoring.length; i++) {
           const el: any = {
+            // @ts-ignore
             server: monitoring[i].children[3].children[0].data,
+            // @ts-ignore
             online: monitoring[i].children[1].children[0].data,
           }
+          // @ts-ignore
           arr.push(el)
         }
       })
@@ -50,10 +56,14 @@ const monitoringOnlineUpdate = async () => {
     const embed = new EmbedBuilder().setColor('#00FF00').setTitle('Мониторинг онлайна серверов')
 
     for (let i = 0; i < arr.length; i++) {
+      // @ts-ignore
       if (arr[i].online) {
+        // @ts-ignore
         str = str.concat(`${i + 1}. ${arr[i].server} \`[${arr[i].online}/100]\` \n\n`)
+        // @ts-ignore
         sumOnline = sumOnline + parseInt(arr[i].online)
       } else {
+        // @ts-ignore
         str = str.concat(`${i + 1}. ${arr[i].server} \`[выключен]\` \n\n`)
       }
     }

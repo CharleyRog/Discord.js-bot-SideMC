@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (role) => {
+export default async (role: any): Promise<void> => {
   console.log(`roleDelete: ${role}`)
 }

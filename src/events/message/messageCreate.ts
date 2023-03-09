@@ -1,15 +1,17 @@
 // IMPORT MODULES
 
+import { Embed, Message } from 'discord.js'
+import { EmbedBuilder } from '@discordjs/builders'
+
 const { ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js')
 const { isCharleyRogByID } = require('../../utils/isHavePerm.ts')
 const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
 
 // CODE
 
-module.exports = async (message) => {
+export default async (message: Message): Promise<void> => {
   if (!message.content || message.author.bot) return
-
-  const command = message.content.toLowerCase()
+  const command: string = message.content.toLowerCase()
 
   const askSayData = [
     {

@@ -6,7 +6,7 @@ const { isAdmin, isBot } = require('../../utils/isHavePerm.ts')
 
 // CODE
 
-module.exports = async (oldMessage, newMessage) => {
+export default async (oldMessage: any, newMessage: any): Promise<void> => {
   if (!oldMessage || !newMessage) return
 
   const user = newMessage.member
@@ -62,6 +62,8 @@ module.exports = async (oldMessage, newMessage) => {
       inline: false,
     })
 
-    await logChannel.send({ embeds: [embed] })
+    if (logChannel) {
+      await logChannel.send({ embeds: [embed] })
+    }
   }
 }

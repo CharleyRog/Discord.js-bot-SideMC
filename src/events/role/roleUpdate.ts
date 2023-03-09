@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (oldRole, newRole) => {
+export default async (oldRole: any, newRole: any): Promise<void> => {
   console.log(`roleUpdate: ${oldRole} | ${newRole}`)
 }

@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (sticker) => {
+export default async (sticker: any): Promise<void> => {
   console.log(`stickerDelete: ${sticker}`)
 }

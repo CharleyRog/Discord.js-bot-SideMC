@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (oldSticker, newSticker) => {
+export default async (oldSticker: any, newSticker: any): Promise<void> => {
   console.log(`stickerUpdate: ${oldSticker} | ${newSticker}`)
 }

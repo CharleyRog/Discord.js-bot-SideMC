@@ -6,7 +6,7 @@ const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
 
 // CODE
 
-module.exports = async (reaction, user) => {
+export default async (reaction: any, user: any): Promise<void> => {
   if (!user || !reaction || user.bot) return
 
   const emojiIcon = '🚫'

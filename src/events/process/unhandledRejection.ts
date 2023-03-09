@@ -1,15 +1,17 @@
 // IMPORT MODULES
 
+import { EmbedBuilder } from '@discordjs/builders'
+
 const client = require('../../client.ts')
 const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
 const config = require('../../config/config.json')
 
 // unhandledRejection EVENT CODE
 
-module.exports = async (reason, promise) => {
+export default async (reason: any, promise: any): Promise<void> => {
   console.error('[FATAL] Possibly Unhandled Rejection at: Promise ', promise, ' reason: ', reason.message)
 
-  const embed = embedBuilderFoo({
+  const embed: EmbedBuilder = embedBuilderFoo({
     title: 'Unhandled Promise Rejection',
     color: '#F00000',
   })

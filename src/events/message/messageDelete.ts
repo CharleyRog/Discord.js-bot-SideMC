@@ -1,11 +1,13 @@
 // IMPORT MODULES
 
+import { GuildBasedChannel, Message, TextChannel } from 'discord.js'
+
 const config = require('../../config/config.json')
 const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
 
 // CODE
 
-module.exports = async (message) => {
+export default async (message: Message): Promise<void> => {
   if (!message || !message.guild) return
 
   try {
@@ -39,8 +41,10 @@ module.exports = async (message) => {
         value: message.content != null ? message.content : `[oldMessage]`,
         inline: false,
       })
-
-    await logChannel.send({ embeds: [embed] })
+    if (logChannel) {
+      // @ts-ignore
+      await logChannel.send({ embeds: [embed] })
+    }
   } catch (error) {
     console.error(error)
   }

@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (guild) => {
+export default async (guild: any): Promise<void> => {
   console.log(`guildIntegrationsUpdate: ${guild}`)
 }

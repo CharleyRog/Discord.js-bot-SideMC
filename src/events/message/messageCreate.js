@@ -2,7 +2,7 @@
 
 const { ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js')
 const { isCharleyRogByID } = require('../../utils/isHavePerm.js')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo.js')
+const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
 
 // CODE
 

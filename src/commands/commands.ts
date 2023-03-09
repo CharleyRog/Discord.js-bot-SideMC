@@ -1,4 +1,4 @@
-module.exports = [
+const commands: any = [
   {
     name: 'ping',
     description: 'Replies with Pong!',
@@ -21,4 +21,4 @@ module.exports = [
   },
 ]
 
-// String - 3
+export default commands

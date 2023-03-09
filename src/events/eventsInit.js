@@ -3,7 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const client = require('../client.ts')
-const { DEV_MODE } = require('../utils/devModeChecker.js')
+const { DEV_MODE } = require('../utils/devModeChecker.ts')
 
 // CODE
 

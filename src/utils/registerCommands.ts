@@ -4,12 +4,11 @@ import config from '../config/config.json' assert { type: 'json' }
 import { REST } from '@discordjs/rest'
 import { Routes } from 'discord-api-types/v9'
 import commands from '../commands/commands.js'
-import CLIENT_ID from './devModeChecker.js'
-import TOKEN from './devModeChecker.js'
+import { TOKEN, CLIENT_ID } from './devModeChecker.js'
 
 // registerCommands CODE
 
-const registerCommands = async () => {
+const registerCommands = async (): Promise<void> => {
   const rest = new REST({ version: '10' }).setToken(TOKEN)
 
   try {

@@ -2,7 +2,7 @@
 
 const config = require('../../config/config.json')
 const { isAdmin, isBot, isAdminsSostav, isDiscordSostav, isStSostav } = require('../../utils/isHavePerm.js')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo.js')
+const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
 
 // CODE
 

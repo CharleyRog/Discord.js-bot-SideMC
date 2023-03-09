@@ -1,8 +1,8 @@
 // IMPORT MODULES
 
 const { ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js')
-const { isCharleyRogByID } = require('../../utils/isHavePerm')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo')
+const { isCharleyRogByID } = require('../../utils/isHavePerm.js')
+const embedBuilderFoo = require('../../utils/embedBuilderFoo.js')
 
 // CODE
 

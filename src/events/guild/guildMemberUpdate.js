@@ -1,6 +1,6 @@
 // IMPORT MODULES
 
-const embedBuilderFoo = require('../../utils/embedBuilderFoo')
+const embedBuilderFoo = require('../../utils/embedBuilderFoo.js')
 const config = require('../../config/config.json')
 
 // CODE

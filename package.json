@@ -3,7 +3,8 @@
 	"description": "Discord.js v14 bot by CharleyRog",
 	"version": "1.0.0",
 	"author": "CharleyRog",
-	"main": "main.js",
+	"main": "src/main.ts",
+	"type": "module",
 	"engines": {
 		"node": ">=18.14.1"
 	},
@@ -17,8 +18,12 @@
 		"mongoose": "^7.0.0"
 	},
 	"scripts": {
-		"dev": "nodemon .",
-		"start": "node ."
+		"dev": "npx nodemon",
+		"start": "npm run build && node build/main",
+		"build": "rimraf ./build && npx tsc",
+		"lint": "npx eslint ./src",
+		"format": "npx eslint ./src --fix",
+		"test": "jest"
 	},
 	"repository": {
 		"type": "git",
@@ -35,10 +40,26 @@
 		"bot"
 	],
 	"devDependencies": {
+		"@jest/globals": "^29.5.0",
+		"@types/jest": "^29.4.0",
+		"@types/node": "^18.14.6",
+		"@types/node-telegram-bot-api": "^0.61.3",
+		"@typescript-eslint/eslint-plugin": "^5.54.1",
+		"@typescript-eslint/parser": "^5.54.1",
 		"eslint": "^8.35.0",
 		"eslint-plugin-jsdoc": "^40.0.1",
+		"husky": "^8.0.3",
+		"jest": "^29.5.0",
 		"node": "^19.6.1",
 		"nodemon": "^2.0.21",
-		"prettier": "^2.8.4"
+		"prettier": "^2.8.4",
+		"ts-jest": "^29.0.5",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.9.5"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint"
+		}
 	}
 }

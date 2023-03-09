@@ -1,7 +1,7 @@
 // IMPORT MODULES
 
-const client = require('../../client')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo')
+const client = require('../../client.ts')
+const embedBuilderFoo = require('../../utils/embedBuilderFoo.js')
 const config = require('../../config/config.json')
 
 // uncaughtException EVENT CODE

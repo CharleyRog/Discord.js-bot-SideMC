@@ -2,8 +2,8 @@
 
 const fs = require('fs')
 const path = require('path')
-const client = require('../client')
-const { DEV_MODE } = require('../utils/devModeChecker')
+const client = require('../client.ts')
+const { DEV_MODE } = require('../utils/devModeChecker.js')
 
 // CODE
 
@@ -42,4 +42,4 @@ const eventsInit = () => {
     })
 }
 
-module.exports = eventsInit
+export default eventsInit

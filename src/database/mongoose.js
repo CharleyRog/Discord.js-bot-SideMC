@@ -23,6 +23,6 @@ module.exports = {
   },
 
   schemas: {
-    User: require('./schemas/User'),
+    User: require('./schemas/User.js'),
   },
 }

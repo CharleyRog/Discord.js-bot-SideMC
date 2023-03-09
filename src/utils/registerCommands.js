@@ -1,10 +1,11 @@
 // IMPORT MODULES
 
-const config = require('../config/config.json')
-const { REST } = require('@discordjs/rest')
-const { Routes } = require('discord-api-types/v9')
-const commands = require('../commands/commands')
-const { TOKEN, CLIENT_ID } = require('../utils/devModeChecker')
+import config from '../config/config.json' assert { type: 'json' }
+import { REST } from '@discordjs/rest'
+import { Routes } from 'discord-api-types/v9'
+import commands from '../commands/commands.js'
+import CLIENT_ID from './devModeChecker.js'
+import TOKEN from './devModeChecker.js'
 
 // registerCommands CODE
 

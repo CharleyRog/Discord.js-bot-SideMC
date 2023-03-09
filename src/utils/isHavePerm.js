@@ -1,6 +1,6 @@
 // IMPORT MODULES
 
-const config = require('../config/config.json')
+import config from '../config/config.json' assert { type: 'json' }
 
 // isDiscordSostav CODE
 
@@ -77,7 +77,7 @@ const isCharleyRogByID = (userID) => {
   return false
 }
 
-module.exports = {
+export default {
   isDiscordSostav,
   isBot,
   isAdminsSostav,

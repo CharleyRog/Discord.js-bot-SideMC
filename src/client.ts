@@ -1,6 +1,6 @@
 // IMPORT MODULES
 
-const { Client, GatewayIntentBits, Partials } = require('discord.js')
+import { Client, GatewayIntentBits, Partials } from 'discord.js'
 
 // CLIENT INIT
 
@@ -19,4 +19,4 @@ const client = new Client({
   partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 })
 
-module.exports = client
+export default client

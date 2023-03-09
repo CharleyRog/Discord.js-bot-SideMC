@@ -2,8 +2,8 @@
 
 const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, InteractionType } = require('discord.js')
 const config = require('../../config/config.json')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo')
-const { isAdmin } = require('../../utils/isHavePerm')
+const embedBuilderFoo = require('../../utils/embedBuilderFoo.js')
+const { isAdmin } = require('../../utils/isHavePerm.js')
 
 // CODE
 

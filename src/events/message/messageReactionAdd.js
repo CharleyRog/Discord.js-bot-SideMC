@@ -1,8 +1,8 @@
 // IMPORT MODULES
 
 const config = require('../../config/config.json')
-const { isAdmin, isBot, isAdminsSostav, isDiscordSostav, isStSostav } = require('../../utils/isHavePerm')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo')
+const { isAdmin, isBot, isAdminsSostav, isDiscordSostav, isStSostav } = require('../../utils/isHavePerm.js')
+const embedBuilderFoo = require('../../utils/embedBuilderFoo.js')
 
 // CODE
 

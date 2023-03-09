@@ -1,10 +1,10 @@
 // IMPORT MODULES
 
-const config = require('../config/config.json')
-const client = require('../client')
-const axios = require('axios')
-const cheerio = require('cheerio')
-const { EmbedBuilder } = require('discord.js')
+import { EmbedBuilder } from 'discord.js'
+import cheerio from 'cheerio'
+import axios from 'axios'
+import client from '../client.ts'
+import config from '../config/config.json' assert { type: 'json' }
 
 // monitoringOnlineUpdate CODE
 
@@ -70,4 +70,4 @@ const monitoringOnlineUpdate = async () => {
   }
 }
 
-module.exports = monitoringOnlineUpdate
+export default monitoringOnlineUpdate

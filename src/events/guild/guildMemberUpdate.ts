@@ -5,14 +5,14 @@ const config = require('../../config/config.json')
 
 // CODE
 
-module.exports = async (oldMember, newMember) => {
+export default async (oldMember: any, newMember: any): Promise<void> => {
   try {
     const roleLogChannelID = config.CHANNELS_ID.ROLE_LOG_CHANNEL_ID
     const oldRoles = oldMember.roles.cache
     const newRoles = newMember.roles.cache
 
-    const addedRoles = newRoles.filter((role) => !oldRoles.has(role.id))
-    const removedRoles = oldRoles.filter((role) => !newRoles.has(role.id))
+    const addedRoles = newRoles.filter((role: any) => !oldRoles.has(role.id))
+    const removedRoles = oldRoles.filter((role: any) => !newRoles.has(role.id))
 
     const auditLog = await newMember.guild.fetchAuditLogs({
       type: 25,
@@ -25,7 +25,7 @@ module.exports = async (oldMember, newMember) => {
       return
     }
 
-    addedRoles.forEach((role) => {
+    addedRoles.forEach((role: any) => {
       if (role.id === config.ROLES_ID.BOOSTER_ROLE_ID) return
       const logChannel = newMember.guild.channels.cache.get(roleLogChannelID)
       if (logChannel) {
@@ -47,7 +47,7 @@ module.exports = async (oldMember, newMember) => {
       }
     })
 
-    removedRoles.forEach((role) => {
+    removedRoles.forEach((role: any) => {
       if (role.id === config.ROLES_ID.BOOSTER_ROLE_ID) return
       const logChannel = newMember.guild.channels.cache.get(roleLogChannelID)
       if (logChannel) {

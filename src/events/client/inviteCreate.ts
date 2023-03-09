@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (invite) => {
+export default async (invite: any): Promise<void> => {
   console.log(`inviteCreate: ${invite}`)
 }

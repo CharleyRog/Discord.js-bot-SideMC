@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (ban) => {
+export default async (ban: any): Promise<void> => {
   console.log(`guildBanAdd: ${ban}`)
 }

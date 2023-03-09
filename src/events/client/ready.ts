@@ -5,7 +5,7 @@ const monitoringOnlineUpdate = require('../../utils/monitoringOnlineUpdate.ts')
 
 // CODE
 
-module.exports = async (client) => {
+export default async (client: any): Promise<void> => {
   // await registerCommands()
   console.log(`Бот запущен. ID: ${client.user.tag}`)
   //   monitoringOnlineUpdate();

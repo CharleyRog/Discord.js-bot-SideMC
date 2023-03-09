@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (error) => {
+export default async (error: any): Promise<void> => {
   console.log(`error: ${error}`)
 }

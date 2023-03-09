@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (info) => {
+export default async (info: any): Promise<void> => {
   console.log(`warn: ${info}`)
 }

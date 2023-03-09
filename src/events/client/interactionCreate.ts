@@ -7,7 +7,7 @@ const { isAdmin } = require('../../utils/isHavePerm.ts')
 
 // CODE
 
-module.exports = async (interaction) => {
+export default async (interaction: any): Promise<void> => {
   if (interaction.isCommand()) {
     try {
       if (isAdmin(interaction.member)) {

@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (member) => {
+export default async (member: any): Promise<void> => {
   console.log(`guildMemberRemove: ${member}`)
 }

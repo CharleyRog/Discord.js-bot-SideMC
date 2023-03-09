@@ -2,6 +2,6 @@
 
 // CODE
 
-module.exports = async (oldUser, newUser) => {
+export default async (oldUser: any, newUser: any): Promise<void> => {
   console.log(`voiceStateUpdate: ${oldUser} | ${newUser}`)
 }

@@ -11,7 +11,7 @@ const devModeEvents = ['ready']
 
 const eventFileInit = (folder: any, file: any): void => {
   try {
-    const event = require(path.join(__dirname, `./${folder.name}`, file))
+    const event = require(path.join(__dirname, `./build/${folder.name}`, file))
     const eventName = file.split('.')[0]
     let pos: any = client
     console.log(`Инициализация ${folder.name} события: ${eventName}`)
@@ -23,10 +23,10 @@ const eventFileInit = (folder: any, file: any): void => {
 }
 
 const eventsInit = (): void => {
-  fs.readdirSync('./events', { withFileTypes: true })
+  fs.readdirSync('./build/events', { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
     .forEach((folder) => {
-      fs.readdirSync(`./events/${folder.name}`)
+      fs.readdirSync(`./build/events/${folder.name}`)
         .filter((file) => file.endsWith('.js'))
         .forEach((file) => {
           if (DEV_MODE) {

@@ -10,12 +10,8 @@ import any = jasmine.any
 
 // CODE
 
-// ;(async () => {
-//   await eventsInit()
-//   // const database = await initializeMongoose()
-//   await client.login(TOKEN)
-// })()
-
-console.log(config.DEV_MODE)
-
-client.login(TOKEN)
+;(async () => {
+  await eventsInit()
+  // const database = await initializeMongoose()
+  await client.login(TOKEN)
+})()

@@ -20,4 +20,4 @@ const registerCommands = async (): Promise<void> => {
   }
 }
 
-module.exports = registerCommands
+export default registerCommands

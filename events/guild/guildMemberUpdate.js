@@ -26,6 +26,7 @@ module.exports = async (oldMember, newMember) => {
     }
 
     addedRoles.forEach((role) => {
+      if (role.id === config.ROLES_ID.BOOSTER_ROLE_ID) return
       const logChannel = newMember.guild.channels.cache.get(roleLogChannelID)
       if (logChannel) {
         const embed = embedBuilderFoo({
@@ -47,6 +48,7 @@ module.exports = async (oldMember, newMember) => {
     })
 
     removedRoles.forEach((role) => {
+      if (role.id === config.ROLES_ID.BOOSTER_ROLE_ID) return
       const logChannel = newMember.guild.channels.cache.get(roleLogChannelID)
       if (logChannel) {
         const embed = embedBuilderFoo({

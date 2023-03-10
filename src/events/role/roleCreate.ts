@@ -13,7 +13,7 @@ export default async (role: any): Promise<void> => {
 
   const embed: EmbedBuilder = embedBuilderFoo({
     title: 'Роль создана',
-    color: '#FF0000',
+    color: '#00FF00',
   })
 
   embed.addFields([{ name: 'Название:', value: `${role.name}` }])

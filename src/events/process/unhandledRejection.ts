@@ -1,7 +1,7 @@
 // IMPORT MODULES
 
 import { EmbedBuilder } from '@discordjs/builders'
-import config from '../../config/config.json'
+import config from '../../config/config.json' assert { type: 'json' }
 import client from '../../client.js'
 import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
 import isTextChannel from '../../utils/isTextChannel.js'

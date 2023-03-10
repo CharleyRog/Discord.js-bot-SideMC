@@ -9,8 +9,6 @@ import config from '../../config/config.json' assert { type: 'json' }
 // CODE
 
 export default async (sticker: any): Promise<void> => {
-  console.log(`stickerCreate: ${sticker}`)
-
   const embed: EmbedBuilder = embedBuilderFoo({
     title: 'Стикер создан',
     color: '#00FF00',

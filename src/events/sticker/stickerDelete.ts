@@ -9,8 +9,6 @@ import config from '../../config/config.json' assert { type: 'json' }
 // CODE
 
 export default async (sticker: any): Promise<void> => {
-  console.log(`stickerDelete: ${sticker}`)
-
   const embed: EmbedBuilder = embedBuilderFoo({
     title: 'Стикер удален',
     color: '#FF0000',

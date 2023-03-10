@@ -1,0 +1,65 @@
+{
+   "DEV_MODE": true,
+   "BUILD_MODE": false,
+
+   "DEV_TOKEN": "",
+   "DEV_CLIENT_ID": "",
+
+   "TOKEN": "",
+   "CLIENT_ID": "",
+
+   "GUILD_ID": "",
+   "DATABASE": {
+      "USERNAME": "",
+      "PASSWORD": "",
+      "CLUSTER": "",
+      "DB_NAME": ""
+   },
+   "ROLES_ID": {
+     "ST_MOD_SOSTAV_ROLE_ID": "",
+     "STAR_ROLE_ID": "",
+     "DOUBLE_STAR_ROLE_ID": "",
+     "PLUS_ROLE_ID": "",
+     "INFINITY_ROLE_ID": "",
+     "ADMINISTRATOR_ROLE_ID": "",
+     "ADMIN_MOD_SOSTAV_ROLE_ID": "",
+     "MODERATOR_DISCORDA_ROLE_ID": "",
+     "GL_MODERATOR_DISCORDA_ROLE_ID": "",
+      "BOOSTER_ROLE_ID": ""
+   },
+   "USERS_ID": {
+     "CHARLEYROG_ID": "",
+     "SIDEMC_NET_ID": "",
+     "SIDEMC_NET_DEV_ID": ""
+   },
+   "CHANNELS_ID":{
+     "ROLE_LOG_CHANNEL_ID": "",
+     "DELETE_CHANNEL_ID": "",
+     "TEST_CHANNEL_ID": "",
+     "SERVERS_ONLINE_CHANNEL_ID": "",
+     "MESSAGE_CREATE_CHANNEL_ID": "",
+     "MESSAGE_DELETE_CHANNEL_ID": "",
+      "MESSAGE_CHANGE_CHANNEL_ID": "",
+     "MESSAGE_ERRORS_CHANNEL_ID": "",
+     "NEWS_CONSTRUCTOR_CHANNEL_ID": "",
+     "MAIN_NEWS_CHANNEL_ID": "",
+     "TEST_NEWS_CHANNEL_ID": "",
+     "ERRORS_CHANNEL_ID": "",
+     "ADMINS_PANEL_CHANNEL_ID": "",
+      "ROLE_LOGS_CHANNEL_ID": "",
+      "STICKER_LOGS_CHANNEL_ID": ""
+   },
+   "MESSAGES_ID": {
+      "SERVERS_ONLINE_MESSAGE_ID": ""
+   },
+   "LINKS": {
+     "ONLINE_MONITORING_LINK": ""
+   },
+  "COLORS": {
+     "YELLOW": "",
+    "RED": "",
+    "GREEN": "",
+    "BLACK":"",
+    "WHITE":""
+  }
+ }

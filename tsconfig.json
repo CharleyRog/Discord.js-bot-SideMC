@@ -3,6 +3,7 @@
 		"target": "ES2018",
 		"lib": [
 			"ES6",
+			"esnext"
 		],
 		"module": "NodeNext",
 		"rootDir": "./src",
@@ -23,9 +24,6 @@
 	"exclude": [
 		"node_modules",
 		"**/*.spec.ts"
-	],
-	"lib": [
-		"esnext"
 	],
 	"ts-node": {
 		"esm": true

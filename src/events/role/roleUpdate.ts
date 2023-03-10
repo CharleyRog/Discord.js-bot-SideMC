@@ -16,14 +16,15 @@ export default async (oldRole: any, newRole: any): Promise<void> => {
     color: '#FFFF00',
   })
 
-  if (oldRole.name !== newRole.name) {
-    embed.addFields([
-      { name: 'Старое название:', value: `${oldRole.name}` },
-      { name: 'Новое название:', value: `${newRole.name}` },
+  embed
+    .addFields([
+      { name: 'Старое название:', value: `${oldRole.name}`, inline: true },
+      { name: 'Новое название:', value: `${newRole.name}`, inline: true },
     ])
-  } else {
-    embed.addFields([{ name: 'Название:', value: `${newRole.name}` }])
-  }
+    .addFields([
+      { name: 'ID:', value: `${newRole.id}`, inline: true },
+      { name: 'Пользователь:', value: `<@${newRole.user.id}>`, inline: true },
+    ])
 
   const logChannel = client.channels.cache.get(config.CHANNELS_ID.ROLE_LOGS_CHANNEL_ID)
   if (isTextChannel(logChannel)) {

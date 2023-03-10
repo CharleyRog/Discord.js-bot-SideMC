@@ -5,12 +5,13 @@ import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
 import client from '../../client.js'
 import isTextChannel from '../../utils/isTextChannel.js'
 import config from '../../config/config.json' assert { type: 'json' }
+import typesOfAuditLogs from '../static/typesOfAuditLogs.js'
 
 // CODE
 
 export default async (role: any): Promise<void> => {
   const auditLog = await role.guild
-    .fetchAuditLogs({ type: 30 })
+    .fetchAuditLogs({ type: typesOfAuditLogs.ROLE_CREATE })
     .then((audit: { entries: { first: () => any } }) => audit.entries.first())
 
   const embed: EmbedBuilder = embedBuilderFoo({

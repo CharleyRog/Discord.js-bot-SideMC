@@ -5,7 +5,7 @@ import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
 import client from '../../client.js'
 import isTextChannel from '../../utils/isTextChannel.js'
 import config from '../../config/config.json' assert { type: 'json' }
-import typesOfAuditLogs from '../static/typesOfAuditLogs.js'
+import typesOfAuditLogs from '../../static/typesOfAuditLogs.js'
 
 // CODE
 

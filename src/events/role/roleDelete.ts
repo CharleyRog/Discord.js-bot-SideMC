@@ -9,7 +9,9 @@ import config from '../../config/config.json' assert { type: 'json' }
 // CODE
 
 export default async (role: any): Promise<void> => {
-  console.log(`roleDelete: ${role}`)
+  const auditLog = await role.guild
+    .fetchAuditLogs({ type: 32 })
+    .then((audit: { entries: { first: () => any } }) => audit.entries.first())
 
   const embed: EmbedBuilder = embedBuilderFoo({
     title: 'Роль удалена',
@@ -19,7 +21,7 @@ export default async (role: any): Promise<void> => {
   embed.addFields([
     { name: 'Название:', value: `${role.name}`, inline: true },
     { name: 'ID:', value: `${role.id}`, inline: true },
-    { name: 'Пользователь:', value: `<@${role.user.id}>`, inline: true },
+    { name: 'Пользователь:', value: `<@${auditLog.executor.id}>`, inline: true },
   ])
 
   const logChannel = client.channels.cache.get(config.CHANNELS_ID.ROLE_LOGS_CHANNEL_ID)

@@ -8,11 +8,11 @@ import config from '../config/config.json' assert { type: 'json' }
 
 // CODE
 
-const devModeEvents = ['ready']
+const devModeEvents = ['ready', 'roleCreate', 'roleDelete', 'roleUpdate']
 
 const eventFileInit = async (eventName: any, folder: any, file: any, __dirname: string): Promise<void> => {
   const buildModeHandler = config.BUILD_MODE ? '' : '/src'
-  const eventModule = await import(path.join(__dirname, `.${buildModeHandler}}/events/${folder.name}`, file))
+  const eventModule = await import(path.join(__dirname, `.${buildModeHandler}/events/${folder.name}`, file))
   const event = eventModule.default
 
   let pos: any = client

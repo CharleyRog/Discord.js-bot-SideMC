@@ -4,7 +4,7 @@ import { Client, GatewayIntentBits, Partials } from 'discord.js'
 
 // CLIENT INIT
 
-const client = new Client({
+const client: Client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,

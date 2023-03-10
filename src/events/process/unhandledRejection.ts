@@ -1,10 +1,10 @@
 // IMPORT MODULES
 
 import { EmbedBuilder } from '@discordjs/builders'
-
-const client = require('../../client.ts')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
-const config = require('../../config/config.json')
+import config from '../../config/config.json'
+import client from '../../client.js'
+import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
+import isTextChannel from '../../utils/isTextChannel.js'
 
 // unhandledRejection EVENT CODE
 
@@ -20,6 +20,8 @@ export default async (reason: any, promise: any): Promise<void> => {
     { name: 'Promise', value: `${promise}` },
     { name: 'Reason', value: `${reason.message}` },
   ])
-
-  client.channels.cache.get(config.CHANNELS_ID.ERRORS_CHANNEL_ID).send({ embeds: [embed] })
+  const logChannel = client.channels.cache.get(config.CHANNELS_ID.ERRORS_CHANNEL_ID)
+  if (isTextChannel(logChannel)) {
+    await logChannel.send({ embeds: [embed] })
+  }
 }

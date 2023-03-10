@@ -1,12 +1,8 @@
 // IMPORT MODULES
 
-import initializeMongoose from './database/mongoose.js'
-
 import { TOKEN } from './utils/devModeChecker.js'
 import eventsInit from './events/eventsInit.js'
-import config from './config/config.json' assert { type: 'json' }
 import client from './client.js'
-import any = jasmine.any
 
 // CODE
 

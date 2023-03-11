@@ -1,5 +1,7 @@
 // IMPORT MODULES
 
+import { TextChannel } from 'discord.js'
+
 const config = require('../../config/config.json')
 const { isAdmin, isBot, isAdminsSostav, isDiscordSostav, isStSostav } = require('../../utils/isHavePerm.ts')
 const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
@@ -30,7 +32,7 @@ export default async (reaction: any, user: any): Promise<void> => {
 
     if (!isAdmin(messageMember) && !isBot(messageMember)) {
       const deleteChannelId = config.CHANNELS_ID.DELETE_CHANNEL_ID
-      const logChannel = message.guild.channels.cache.get(deleteChannelId)
+      const logChannel = message.guild.channels.cache.get(deleteChannelId) as TextChannel
 
       let imageStickerUrl = message.attachments.size > 0 ? message.attachments.first().url : ''
       if (!imageStickerUrl && !reaction.partial && reaction.message.content.includes('<:')) {

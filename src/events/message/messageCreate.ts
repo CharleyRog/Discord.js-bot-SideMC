@@ -1,7 +1,6 @@
 // IMPORT MODULES
 
-import { Embed, Message } from 'discord.js'
-import { EmbedBuilder } from '@discordjs/builders'
+import { Message } from 'discord.js'
 
 const { ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js')
 const { isCharleyRogByID } = require('../../utils/isHavePerm.ts')
@@ -56,7 +55,7 @@ export default async (message: Message): Promise<void> => {
             'Данная панель доступна исключительно Администраторам данного сервера. Функционал будет дополняться в будущем',
         })
 
-        message.reply({
+        await message.reply({
           components: [button],
           embeds: [embed],
         })
@@ -133,7 +132,7 @@ export default async (message: Message): Promise<void> => {
             'Данная панель доступна исключительно Старшему модераторскому составу. Функционал будет дополняться в будущем',
         })
 
-        message.reply({
+        await message.reply({
           components: [button, button2],
           embeds: [embed],
         })

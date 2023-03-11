@@ -1,5 +1,7 @@
 // IMPORT MODULES
 
+import { TextChannel } from 'discord.js'
+
 const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
 const config = require('../../config/config.json')
 
@@ -27,7 +29,7 @@ export default async (oldMember: any, newMember: any): Promise<void> => {
 
     addedRoles.forEach((role: any) => {
       if (role.id === config.ROLES_ID.BOOSTER_ROLE_ID) return
-      const logChannel = newMember.guild.channels.cache.get(roleLogChannelID)
+      const logChannel = newMember.guild.channels.cache.get(roleLogChannelID) as TextChannel
       if (logChannel) {
         const embed = embedBuilderFoo({
           color: '#00FF00',

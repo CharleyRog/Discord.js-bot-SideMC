@@ -6,6 +6,7 @@ import client from '../../client.js'
 import isTextChannel from '../../utils/isTextChannel.js'
 import config from '../../config/config.json' assert { type: 'json' }
 import typesOfAuditLogs from '../../static/typesOfAuditLogs.js'
+import { TextChannel } from 'discord.js'
 
 // CODE
 
@@ -71,7 +72,7 @@ export default async (oldRole: any, newRole: any): Promise<void> => {
       }
     }
 
-    const logChannel = client.channels.cache.get(config.CHANNELS_ID.ROLE_LOGS_CHANNEL_ID)
+    const logChannel = client.channels.cache.get(config.CHANNELS_ID.ROLE_LOGS_CHANNEL_ID) as TextChannel
     if (isTextChannel(logChannel)) {
       await logChannel.send({ embeds: [embed] })
     }

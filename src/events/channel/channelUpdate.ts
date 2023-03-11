@@ -6,6 +6,7 @@ import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
 import client from '../../client.js'
 import isTextChannel from '../../utils/isTextChannel.js'
 import config from '../../config/config.json' assert { type: 'json' }
+import { TextChannel } from 'discord.js'
 
 // CODE
 
@@ -104,7 +105,7 @@ export default async (oldChannel: any, newChannel: any): Promise<void> => {
       ])
     }
 
-    const logChannel = client.channels.cache.get(config.CHANNELS_ID.CHANNELS_LOGS_CHANNEL_ID)
+    const logChannel = client.channels.cache.get(config.CHANNELS_ID.CHANNELS_LOGS_CHANNEL_ID) as TextChannel
     if (isTextChannel(logChannel)) {
       await logChannel.send({ embeds: [embed] })
     }

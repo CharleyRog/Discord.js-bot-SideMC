@@ -241,3 +241,4 @@ Temporary Items
 build/
 backup/
 config.json
+.comments

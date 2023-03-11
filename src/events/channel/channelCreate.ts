@@ -6,27 +6,51 @@ import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
 import client from '../../client.js'
 import isTextChannel from '../../utils/isTextChannel.js'
 import config from '../../config/config.json' assert { type: 'json' }
+import error from '../client/error.js'
 
 // CODE
 
 export default async (channel: any): Promise<void> => {
-  const auditLog = await channel.guild
-    .fetchAuditLogs({ type: typesOfAuditLogs.CHANNEL_CREATE })
-    .then((audit: { entries: { first: () => any } }) => audit.entries.first())
+  try {
+    const auditLog = await channel.guild
+      .fetchAuditLogs({ type: typesOfAuditLogs.CHANNEL_CREATE })
+      .then((audit: { entries: { first: () => any } }) => audit.entries.first())
 
-  const embed: EmbedBuilder = embedBuilderFoo({
-    title: 'Канал создан',
-    color: '#00FF00',
-  })
+    const embed: EmbedBuilder = embedBuilderFoo({
+      title: 'Канал создан',
+      color: '#00FF00',
+    })
 
-  embed.addFields([
-    { name: 'Название:', value: `${channel.name}`, inline: true },
-    { name: 'ID:', value: `<#${channel.id}>`, inline: true },
-    { name: 'Пользователь:', value: `<@${auditLog.executor.id}>`, inline: true },
-  ])
+    embed
+      .addFields([
+        { name: 'Name:', value: channel.name, inline: true },
+        { name: 'ID:', value: channel.id, inline: true },
+        { name: 'Пользователь:', value: `<@${auditLog.executor.id}>`, inline: true },
+      ])
+      .addFields([
+        { name: 'Type:', value: channel.type, inline: true },
+        { name: 'Position:', value: channel.position, inline: true },
+        { name: 'Parent ID:', value: channel.parentId, inline: true },
+      ])
+      .addFields([
+        { name: 'Guild ID:', value: channel.guildId, inline: true },
+        { name: 'NSFW:', value: channel.nsfw, inline: true },
+        { name: 'Topic:', value: channel.topic, inline: true },
+      ])
+      .addFields([{ name: 'Created at:', value: channel.createdAt, inline: true }])
+      .addFields([
+        {
+          name: 'Permission overwrites:',
+          value: JSON.stringify(channel.permissionOverwrites),
+          inline: true,
+        },
+      ])
 
-  const logChannel = client.channels.cache.get(config.CHANNELS_ID.CHANNELS_LOGS_CHANNEL_ID)
-  if (isTextChannel(logChannel)) {
-    await logChannel.send({ embeds: [embed] })
+    const logChannel = client.channels.cache.get(config.CHANNELS_ID.CHANNELS_LOGS_CHANNEL_ID)
+    if (isTextChannel(logChannel)) {
+      await logChannel.send({ embeds: [embed] })
+    }
+  } catch (error: any) {
+    console.error(error)
   }
 }

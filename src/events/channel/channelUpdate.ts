@@ -68,11 +68,6 @@ export default async (oldChannel: any, newChannel: any): Promise<void> => {
   }
 
   if (oldChannel.permissionOverwrites !== newChannel.permissionOverwrites) {
-    console.log(
-      `Permission overwrites changed from ${JSON.stringify(oldChannel.permissionOverwrites)} to ${JSON.stringify(
-        newChannel.permissionOverwrites,
-      )}`,
-    )
     embed.addFields([
       {
         name: 'Permission overwrites from:',

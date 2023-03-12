@@ -3,9 +3,8 @@
 import { EmbedBuilder } from '@discordjs/builders'
 import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
 import client from '../../client.js'
-import isTextChannel from '../../utils/isTextChannel.js'
 import config from '../../config/config.json' assert { type: 'json' }
-import { TextChannel } from 'discord.js'
+import { Channel } from 'discord.js'
 
 // CODE
 
@@ -36,8 +35,8 @@ export default async (error: any): Promise<void> => {
       embed.addFields([{ name: 'HttpStatus:', value: error.httpStatus, inline: true }])
     }
 
-    const logChannel = client.channels.cache.get(config.CHANNELS_ID.ERRORS_CHANNEL_ID) as TextChannel
-    if (isTextChannel(logChannel)) {
+    const logChannel: Channel | undefined = client.channels.cache.get(config.CHANNELS_ID.ERRORS_CHANNEL_ID)
+    if (logChannel && logChannel.isTextBased()) {
       await logChannel.send({ embeds: [embed] })
     }
   } catch (error) {

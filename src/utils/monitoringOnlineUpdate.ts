@@ -1,7 +1,7 @@
 // IMPORT MODULES
 
-import { EmbedBuilder, Guild } from 'discord.js'
-import cheerio, { CheerioAPI } from 'cheerio'
+import { EmbedBuilder, Guild, GuildBasedChannel } from 'discord.js'
+import cheerio from 'cheerio'
 import axios from 'axios'
 import client from '../client.js'
 import config from '../config/config.json' assert { type: 'json' }
@@ -15,11 +15,11 @@ const monitoringOnlineUpdate = async () => {
     const monitoringLink: string = config.LINKS.ONLINE_MONITORING_LINK
     const guildID: string = config.GUILD_ID
 
-    const guild = client.guilds.cache.get(guildID)
+    const guild: Guild | undefined = client.guilds.cache.get(guildID)
     if (!guild) return
-    const logChannel = guild.channels.cache.get(serversOnlineChanelID)
-    if (!logChannel) return
-    // @ts-ignore
+    const logChannel: GuildBasedChannel | undefined = guild.channels.cache.get(serversOnlineChanelID)
+    if (!logChannel || !logChannel.isTextBased()) return
+
     const logMessage = await logChannel.messages.fetch(serversOnlineMessageID)
 
     let arr: [] = []

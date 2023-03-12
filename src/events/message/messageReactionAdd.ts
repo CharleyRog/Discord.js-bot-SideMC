@@ -1,14 +1,13 @@
 // IMPORT MODULES
 
-import { TextChannel } from 'discord.js'
-
-const config = require('../../config/config.json')
-const { isAdmin, isBot, isAdminsSostav, isDiscordSostav, isStSostav } = require('../../utils/isHavePerm.ts')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
+import { MessageReaction, User, GuildBasedChannel, Message, PartialMessage, GuildMember } from 'discord.js'
+import config from '../../config/config.json' assert { type: 'json' }
+import { isAdmin, isAdminsSostav, isBot, isDiscordSostav, isStSostav } from '../../utils/isHavePerm.js'
+import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
 
 // CODE
 
-export default async (reaction: any, user: any): Promise<void> => {
+export default async (reaction: MessageReaction, user: User): Promise<void> => {
   if (!user || !reaction || user.bot) return
 
   const emojiIcon = '🚫'
@@ -24,27 +23,35 @@ export default async (reaction: any, user: any): Promise<void> => {
     }
   }
 
-  const message = reaction.message
-  const member = message.guild.members.cache.get(user.id)
+  const message: Message | PartialMessage = reaction.message
+  if (!message.guild || !message.author || !message.attachments) return
+
+  const member: GuildMember | undefined = message.guild.members.cache.get(user.id)
 
   if (isAdmin(member) || isDiscordSostav(member) || isStSostav(member) || isAdminsSostav(member)) {
-    const messageMember = message.guild.members.cache.get(message.author.id)
+    const messageMember = member?.guild.members.cache.get(message.author.id)
 
     if (!isAdmin(messageMember) && !isBot(messageMember)) {
       const deleteChannelId = config.CHANNELS_ID.DELETE_CHANNEL_ID
-      const logChannel = message.guild.channels.cache.get(deleteChannelId) as TextChannel
+      const logChannel: GuildBasedChannel | undefined = message.guild.channels.cache.get(deleteChannelId)
 
-      let imageStickerUrl = message.attachments.size > 0 ? message.attachments.first().url : ''
-      if (!imageStickerUrl && !reaction.partial && reaction.message.content.includes('<:')) {
+      let imageStickerUrl = message.attachments.size > 0 ? message.attachments.first()?.url : ''
+      if (
+        !imageStickerUrl &&
+        !reaction.partial &&
+        reaction.message.content &&
+        reaction.message.content.includes('<:')
+      ) {
         imageStickerUrl = `https://cdn.discordapp.com/stickers/${reaction.emoji.id}.${
           reaction.emoji.animated ? 'gif' : 'png'
         }`
       }
 
-      const embed = embedBuilderFoo({
+      const embed: any = embedBuilderFoo({
         color: '#FF0000',
         title: 'Сообщение удалено',
       })
+
       embed.addFields(
         { name: 'Модератор', value: `<@${user.id}>`, inline: true },
         {
@@ -61,9 +68,8 @@ export default async (reaction: any, user: any): Promise<void> => {
 
       if (message.content !== '') {
         embed.addFields({
-          name: 'Содержание сообщения:',
+          name: `Содержание сообщения:`,
           value: message.content,
-          inline: false,
         })
       }
 
@@ -72,7 +78,9 @@ export default async (reaction: any, user: any): Promise<void> => {
       }
 
       await message.delete()
-      await logChannel.send({ embeds: [embed] })
+      if (logChannel && logChannel.isTextBased()) {
+        await logChannel.send({ embeds: [embed] })
+      }
     }
   }
 }

@@ -1,10 +1,8 @@
 // IMPORT MODULES
 
-import { Message } from 'discord.js'
-
-const { ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js')
-const { isCharleyRogByID } = require('../../utils/isHavePerm.ts')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, Message } from 'discord.js'
+import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
+import { isCharleyRogByID } from '../../utils/isHavePerm.js'
 
 // CODE
 
@@ -56,6 +54,7 @@ export default async (message: Message): Promise<void> => {
         })
 
         await message.reply({
+          // @ts-ignore
           components: [button],
           embeds: [embed],
         })
@@ -133,6 +132,7 @@ export default async (message: Message): Promise<void> => {
         })
 
         await message.reply({
+          // @ts-ignore
           components: [button, button2],
           embeds: [embed],
         })

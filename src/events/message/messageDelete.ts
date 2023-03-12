@@ -1,9 +1,8 @@
 // IMPORT MODULES
 
-import { Message, TextChannel } from 'discord.js'
-
-const config = require('../../config/config.json')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
+import { GuildBasedChannel, Message } from 'discord.js'
+import config from '../../config/config.json' assert { type: 'json' }
+import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
 
 // CODE
 
@@ -12,7 +11,7 @@ export default async (message: Message): Promise<void> => {
 
   try {
     const messageDeleteChannelID = config.CHANNELS_ID.MESSAGE_DELETE_CHANNEL_ID
-    const logChannel = message.guild.channels.cache.get(messageDeleteChannelID) as TextChannel
+    const logChannel: GuildBasedChannel | undefined = message.guild.channels.cache.get(messageDeleteChannelID)
     const guildID = config.GUILD_ID
     const deletedTime = message.createdAt
 
@@ -41,8 +40,7 @@ export default async (message: Message): Promise<void> => {
         value: message.content != null ? message.content : `[oldMessage]`,
         inline: false,
       })
-    if (logChannel) {
-      // @ts-ignore
+    if (logChannel && logChannel.isTextBased()) {
       await logChannel.send({ embeds: [embed] })
     }
   } catch (error) {

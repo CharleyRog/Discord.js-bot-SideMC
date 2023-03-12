@@ -1,22 +1,29 @@
 // IMPORT MODULES
 
-const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, InteractionType } = require('discord.js')
-const config = require('../../config/config.json')
-const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
-const { isAdmin } = require('../../utils/isHavePerm.ts')
+import {
+  ActionRowBuilder,
+  BaseInteraction,
+  GuildBasedChannel,
+  ModalBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+} from 'discord.js'
+import config from '../../config/config.json'
+import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
+import { isAdmin } from '../../utils/isHavePerm.js'
 
 // CODE
 
-export default async (interaction: any): Promise<void> => {
+export default async (interaction: BaseInteraction): Promise<void> => {
   if (interaction.isCommand()) {
     try {
-      if (isAdmin(interaction.member)) {
-        if (interaction.commandName == 'say') {
-          const messageToReply = interaction.options.getString('message')
-
+      if (isAdmin(interaction.member) && interaction.commandName == 'say') {
+        // @ts-ignore
+        const messageToReply = interaction.options.getString('message')
+        if (interaction.channel) {
           await interaction.channel.send(messageToReply)
-          await interaction.reply({ content: 'Sent', ephemeral: true })
         }
+        await interaction.reply({ content: 'Sent', ephemeral: true })
       }
 
       if (interaction.commandName === 'ping') {
@@ -37,7 +44,9 @@ export default async (interaction: any): Promise<void> => {
 
   if (interaction.isButton()) {
     if (interaction.customId === 'createNewsMainPost-button') {
-      const modal = new ModalBuilder().setCustomId('createNewsMainPost-modal').setTitle('Создание основной новости')
+      const modal: ModalBuilder = new ModalBuilder()
+        .setCustomId('createNewsMainPost-modal')
+        .setTitle('Создание основной новости')
 
       const titleInput = new TextInputBuilder()
         .setCustomId('createNewsMainPost-titleInput')
@@ -76,6 +85,7 @@ export default async (interaction: any): Promise<void> => {
       const linkTextActionRow = new ActionRowBuilder().addComponents(textInput)
       const linkImgActionRow = new ActionRowBuilder().addComponents(linkImgInput)
 
+      // @ts-ignore
       modal.addComponents(titleActionRow, linkActionRow, linkTextActionRow, linkImgActionRow)
 
       await interaction.showModal(modal)
@@ -120,13 +130,14 @@ export default async (interaction: any): Promise<void> => {
       const linkTextActionRow = new ActionRowBuilder().addComponents(textInput)
       const linkImgActionRow = new ActionRowBuilder().addComponents(linkImgInput)
 
+      // @ts-ignore
       modal.addComponents(titleActionRow, linkActionRow, linkTextActionRow, linkImgActionRow)
 
       await interaction.showModal(modal)
     }
   }
 
-  if (interaction.type === InteractionType.ModalSubmit) {
+  if (interaction.isModalSubmit()) {
     if (interaction.customId === 'createNewsMainPost-modal') {
       const titleInput = interaction.fields.getTextInputValue('createNewsMainPost-titleInput')
       const linkText = interaction.fields.getTextInputValue('createNewsMainPost-linkText')
@@ -134,7 +145,9 @@ export default async (interaction: any): Promise<void> => {
       const linkImgInput = interaction.fields.getTextInputValue('createNewsMainPost-linkImgInput')
 
       try {
-        const mainNewsChannel = interaction.guild.channels.cache.get(config.CHANNELS_ID.MAIN_NEWS_CHANNEL_ID)
+        const mainNewsChannel: GuildBasedChannel | undefined = interaction.guild?.channels.cache.get(
+          config.CHANNELS_ID.MAIN_NEWS_CHANNEL_ID,
+        )
 
         const data = {
           color: '#FFFF00',
@@ -145,8 +158,9 @@ export default async (interaction: any): Promise<void> => {
         }
 
         const embed = embedBuilderFoo(data)
-
-        await mainNewsChannel.send({ content: '@everyone', embeds: [embed] })
+        if (mainNewsChannel && mainNewsChannel.isTextBased()) {
+          await mainNewsChannel.send({ content: '@everyone', embeds: [embed] })
+        }
         await interaction.reply({
           content: `Новость ${data.title} опубликована в канале ${mainNewsChannel}`,
           ephemeral: true,
@@ -162,7 +176,9 @@ export default async (interaction: any): Promise<void> => {
       const linkImgInput = interaction.fields.getTextInputValue('createNewsTestPost-linkImgInput')
 
       try {
-        const testNewsChannel = interaction.guild.channels.cache.get(config.CHANNELS_ID.TEST_NEWS_CHANNEL_ID)
+        const testNewsChannel: GuildBasedChannel | undefined = interaction.guild?.channels.cache.get(
+          config.CHANNELS_ID.TEST_NEWS_CHANNEL_ID,
+        )
 
         const data = {
           color: '#FFFF00',
@@ -173,8 +189,9 @@ export default async (interaction: any): Promise<void> => {
         }
 
         const embed = embedBuilderFoo(data)
-
-        await testNewsChannel.send({ content: 'тап :)', embeds: [embed] })
+        if (testNewsChannel && testNewsChannel.isTextBased()) {
+          await testNewsChannel.send({ content: 'тап :)', embeds: [embed] })
+        }
         await interaction.reply({
           content: `Новость ${data.title} опубликована в канале ${testNewsChannel}`,
           ephemeral: true,

@@ -1,13 +1,12 @@
 // IMPORT MODULES
 
-import { TextChannel } from 'discord.js'
-
-const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
-const config = require('../../config/config.json')
+import { GuildBasedChannel, GuildMember } from 'discord.js'
+import config from '../../config/config.json' assert { type: 'json' }
+import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
 
 // CODE
 
-export default async (oldMember: any, newMember: any): Promise<void> => {
+export default async (oldMember: GuildMember, newMember: GuildMember): Promise<void> => {
   try {
     const roleLogChannelID = config.CHANNELS_ID.ROLE_LOG_CHANNEL_ID
     const oldRoles = oldMember.roles.cache
@@ -23,14 +22,14 @@ export default async (oldMember: any, newMember: any): Promise<void> => {
     const log = auditLog.entries.first()
     const executor = log ? log.executor : null
 
-    if (executor.bot) {
+    if (!executor || executor.bot) {
       return
     }
 
     addedRoles.forEach((role: any) => {
       if (role.id === config.ROLES_ID.BOOSTER_ROLE_ID) return
-      const logChannel = newMember.guild.channels.cache.get(roleLogChannelID) as TextChannel
-      if (logChannel) {
+      const logChannel: GuildBasedChannel | undefined = newMember.guild.channels.cache.get(roleLogChannelID)
+      if (logChannel && logChannel.isTextBased()) {
         const embed = embedBuilderFoo({
           color: '#00FF00',
           title: 'Выдана роль',
@@ -51,8 +50,8 @@ export default async (oldMember: any, newMember: any): Promise<void> => {
 
     removedRoles.forEach((role: any) => {
       if (role.id === config.ROLES_ID.BOOSTER_ROLE_ID) return
-      const logChannel = newMember.guild.channels.cache.get(roleLogChannelID)
-      if (logChannel) {
+      const logChannel: GuildBasedChannel | undefined = newMember.guild.channels.cache.get(roleLogChannelID)
+      if (logChannel && logChannel.isTextBased()) {
         const embed = embedBuilderFoo({
           color: '#FF0000',
           title: 'Снята роль',
@@ -66,6 +65,7 @@ export default async (oldMember: any, newMember: any): Promise<void> => {
           { name: 'Снял роль', value: `<@&${role.id}>`, inline: true },
           { name: 'Пользователю', value: `<@${newMember.id}>`, inline: true },
         )
+
         logChannel.send({ embeds: [embed] })
       }
     })

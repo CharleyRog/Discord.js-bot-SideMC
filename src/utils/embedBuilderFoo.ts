@@ -4,7 +4,7 @@ import { EmbedBuilder } from 'discord.js'
 
 // embedBuilderFoo CODE
 
-const embedBuilderFoo = (data: any) => {
+const embedBuilderFoo = (data: any): EmbedBuilder => {
   const embed: EmbedBuilder = new EmbedBuilder()
 
   if (data.color) embed.setColor(data.color)

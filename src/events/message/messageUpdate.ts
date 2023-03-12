@@ -1,10 +1,9 @@
 // IMPORT MODULES
 
-import { TextChannel } from 'discord.js'
-
-const embedBuilderFoo = require('../../utils/embedBuilderFoo.ts')
-const config = require('../../config/config.json')
-const { isAdmin, isBot } = require('../../utils/isHavePerm.ts')
+import { GuildChannel } from 'discord.js'
+import embedBuilderFoo from '../../utils/embedBuilderFoo.js'
+import config from '../../config/config.json' assert { type: 'json' }
+import { isAdmin, isBot } from '../../utils/isHavePerm.js'
 
 // CODE
 
@@ -18,7 +17,7 @@ export default async (oldMessage: any, newMessage: any): Promise<void> => {
     let oldContent = oldMessage.content
     let newContent = newMessage.content
     const messageChangeChannelID = config.CHANNELS_ID.MESSAGE_CHANGE_CHANNEL_ID
-    const logChannel = newMessage.guild.channels.cache.get(messageChangeChannelID) as TextChannel
+    const logChannel: GuildChannel | undefined = newMessage.guild.channels.cache.get(messageChangeChannelID)
     const guildID = config.GUILD_ID
 
     if (!oldContent) {
@@ -63,7 +62,7 @@ export default async (oldMessage: any, newMessage: any): Promise<void> => {
       inline: false,
     })
 
-    if (logChannel) {
+    if (logChannel && logChannel.isTextBased()) {
       await logChannel.send({ embeds: [embed] })
     }
   }
